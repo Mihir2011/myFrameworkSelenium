@@ -84,31 +84,31 @@ public class RegisterPageObject extends BasePageObject {
 //    Get error messages
 
     public String getWarningMsg() {
-        return wait.waitUntilElementToBeVisible(warningMsg).getText();
+        return seleniumHelper.getText(warningMsg);
     }
 
     public String getFirstNameErrorText() {
-        return wait.waitUntilElementToBeVisible(errorFieldByName("First Name")).getText();
+        return seleniumHelper.getText(errorFieldByName("First Name"));
     }
 
     public String getLastNameErrorText() {
-        return wait.waitUntilElementToBeVisible(errorFieldByName("Last Name")).getText();
+        return seleniumHelper.getText(errorFieldByName("Last Name"));
     }
 
     public String getEmailErrorText() {
-        return wait.waitUntilElementToBeVisible(errorFieldByName("E-Mail")).getText();
+        return seleniumHelper.getText(errorFieldByName("E-Mail"));
     }
 
     public String getTelephoneErrorText() {
-        return wait.waitUntilElementToBeVisible(errorFieldByName("Telephone")).getText();
+        return seleniumHelper.getText(errorFieldByName("Telephone"));
     }
 
     public String getPasswordErrorText() {
-        return wait.waitUntilElementToBeVisible(errorFieldByName("Password")).getText();
+        return seleniumHelper.getText(errorFieldByName("Password"));
     }
 
     public String getConfirmPasswordErrorText() {
-        return seleniumHelper.scrollToElements(errorFieldByName("Password Confirm")).getText();
+        return seleniumHelper.getText(errorFieldByName("Password Confirm"));
     }
 
 //    get displayed methods

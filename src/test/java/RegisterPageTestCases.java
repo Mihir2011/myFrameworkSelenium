@@ -91,6 +91,9 @@ public class RegisterPageTestCases extends Base {
         registerPageObj.agreePrivacyPolicy();
         registerPageObj.fillRegisterForm(user);
 
+//        Verify error message is displayed
+        Assert.assertTrue(registerPageObj.isConfirmPasswordErrorMsgDisplayed(), "Confirm Password error message not displayed");
+
 //        Verify error message
         String confirmMsg = registerPageObj.getConfirmPasswordErrorText();
         Assert.assertEquals(confirmMsg, "Password confirmation does not match password!", "Confirm Password error message not displayed or mismatched");
