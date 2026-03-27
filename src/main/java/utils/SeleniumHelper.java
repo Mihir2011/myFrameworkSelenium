@@ -37,6 +37,13 @@ public class SeleniumHelper {
         element.sendKeys(text);
     }
 
+    public void enterText(WebElement by,  String text){
+        var element = wait.waitUntilElementToBeVisible(by);
+        js.scrollToElementIfNotVisible(element);
+        element.clear();
+        element.sendKeys(text);
+    }
+
     public String getText(By by){
         var element = wait.waitUntilElementToBeVisible(by);
         js.scrollToElementIfNotVisible(element);
@@ -46,5 +53,11 @@ public class SeleniumHelper {
     public String getPageTitle() throws InterruptedException {
         wait.waitForPageContentLoaded();
         return driver.getTitle();
+    }
+
+    public void clickOnElement(By by){
+        var element = wait.waitUntilElementToBeClickable(by);
+        js.scrollToElementIfNotVisible(element);
+        element.click();
     }
 }

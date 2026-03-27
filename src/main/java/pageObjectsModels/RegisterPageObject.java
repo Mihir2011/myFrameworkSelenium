@@ -34,7 +34,7 @@ public class RegisterPageObject extends BasePageObject {
 
     //    Actions
     public String getRegisterAccountTitle() {
-        return wait.waitUntilElementToBeVisible(registerAccountTitle).getText();
+        return seleniumHelper.getText(registerAccountTitle);
     }
 
     public void enterFirstName(String fName) {
@@ -62,23 +62,23 @@ public class RegisterPageObject extends BasePageObject {
     }
 
     public void clickOnContinueBtn() {
-        wait.waitUntilElementToBeClickable(continueBtn).click();
+        seleniumHelper.clickOnElement(continueBtn);
     }
 
     public void agreePrivacyPolicy() {
-        seleniumHelper.scrollToElements(privacyPolicy).click();
+        seleniumHelper.clickOnElement(privacyPolicy);
     }
 
     public void subscribeStatus(String status) {
         if (status.equalsIgnoreCase("Yes")) {
-            seleniumHelper.scrollToElements(subscribeYes).click();
+            seleniumHelper.clickOnElement(subscribeYes);
         } else {
-            seleniumHelper.scrollToElements(subscribeNo).click();
+            seleniumHelper.clickOnElement(subscribeNo);
         }
     }
 
     public void clickOnLoginPageLink() {
-        wait.waitUntilElementToBeClickable(loginPageLink).click();
+        seleniumHelper.clickOnElement(loginPageLink);
     }
 
 //    Get error messages
