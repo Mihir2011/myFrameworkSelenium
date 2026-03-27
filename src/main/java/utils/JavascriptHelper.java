@@ -32,4 +32,9 @@ public class JavascriptHelper {
         }
         return element;
     }
+
+    public String getTextUsingJS(WebElement element) {
+        return (String) js.executeScript(
+                "return arguments[0].textContent;", element);
+    }
 }

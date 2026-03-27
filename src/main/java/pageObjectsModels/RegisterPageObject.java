@@ -38,27 +38,27 @@ public class RegisterPageObject extends BasePageObject {
     }
 
     public void enterFirstName(String fName) {
-        wait.waitUntilElementToBeVisible(firstName).sendKeys(fName);
+        seleniumHelper.enterText(firstName, fName);
     }
 
     public void enterLastName(String lName) {
-        wait.waitUntilElementToBeVisible(lastName).sendKeys(lName);
+        seleniumHelper.enterText(lastName, lName);
     }
 
     public void enterEmail(String mail) {
-        wait.waitUntilElementToBeVisible(email).sendKeys(mail);
+        seleniumHelper.enterText(email, mail);
     }
 
     public void enterTelephone(String number) {
-        wait.waitUntilElementToBeVisible(telephone).sendKeys(number);
+        seleniumHelper.enterText(telephone, number);
     }
 
     public void enterPassword(String pass) {
-        wait.waitUntilElementToBeVisible(password).sendKeys(pass);
+        seleniumHelper.enterText(password, pass);
     }
 
     public void enterConfirmPassword(String cPass) {
-        wait.waitUntilElementToBeVisible(confirmPassword).sendKeys(cPass);
+        seleniumHelper.enterText(confirmPassword, cPass);
     }
 
     public void clickOnContinueBtn() {

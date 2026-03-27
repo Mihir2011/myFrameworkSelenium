@@ -46,24 +46,31 @@ public class RegisterPageTestCases extends Base {
         var user = RegisterDataFactory.blankData();
         registerPageObj.fillRegisterForm(user);
 
+//        Verify Error message is displayed
+        Assert.assertTrue(registerPageObj.isFirstNameErrorMsgDisplayed(), "First name error message not displayed");
+        Assert.assertTrue(registerPageObj.isLastNameErrorMsgDisplayed(), "Last name error message not displayed");
+        Assert.assertTrue(registerPageObj.isEmailErrorMsgDisplayed(), "Email error message not displayed");
+        Assert.assertTrue(registerPageObj.isTelephoneErrorMsgDisplayed(), "Telephone error message not displayed");
+        Assert.assertTrue(registerPageObj.isPasswordErrorMsgDisplayed(), "Password error message not displayed");
+
 //        Verify error message
         String warningMsg = registerPageObj.getWarningMsg();
-        softAssert.assertEquals(warningMsg, "Warning: You must agree to the Privacy Policy!", "Warning message not displayed or mismatched");
+        Assert.assertEquals(warningMsg, "Warning: You must agree to the Privacy Policy!", "Warning message not displayed or mismatched");
 
         String firstNameErrorMsg = registerPageObj.getFirstNameErrorText();
-        softAssert.assertEquals(firstNameErrorMsg, "First Name must be between 1 and 32 characters!", "First name error message not displayed or mismatched");
+        Assert.assertEquals(firstNameErrorMsg, "First Name must be between 1 and 32 characters!", "First name error message not displayed or mismatched");
 
         String lastNameErrorMsg = registerPageObj.getLastNameErrorText();
-        softAssert.assertEquals(lastNameErrorMsg, "Last Name must be between 1 and 32 characters!", "Last name error message not displayed or mismatched");
+        Assert.assertEquals(lastNameErrorMsg, "Last Name must be between 1 and 32 characters!", "Last name error message not displayed or mismatched");
 
         String emailErrorMsg = registerPageObj.getEmailErrorText();
-        softAssert.assertEquals(emailErrorMsg, "E-Mail Address does not appear to be valid!", "Email error message not displayed or mismatched");
+        Assert.assertEquals(emailErrorMsg, "E-Mail Address does not appear to be valid!", "Email error message not displayed or mismatched");
 
         String telephoneErrorMsg = registerPageObj.getTelephoneErrorText();
-        softAssert.assertEquals(telephoneErrorMsg, "Telephone must be between 3 and 32 characters!", "Telephone error message not displayed or mismatched");
+        Assert.assertEquals(telephoneErrorMsg, "Telephone must be between 3 and 32 characters!", "Telephone error message not displayed or mismatched");
 
         String passwordErrorMsg = registerPageObj.getPasswordErrorText();
-        softAssert.assertEquals(passwordErrorMsg, "Password must be between 4 and 20 characters!", "Password error message not displayed or mismatched");
+        Assert.assertEquals(passwordErrorMsg, "Password must be between 4 and 20 characters!", "Password error message not displayed or mismatched");
     }
 
     @Test
@@ -90,7 +97,7 @@ public class RegisterPageTestCases extends Base {
     }
 
     @Test
-    public void verifyToEnterAlphabeticalValuesInPhoneNumber(){
+    public void verifyToEnterAlphabeticalValuesInPhoneNumber() {
 //        Page Object Models
         var homePageObj = new HomePageObject(driver);
         var registerPageObj = new RegisterPageObject(driver);
@@ -108,6 +115,9 @@ public class RegisterPageTestCases extends Base {
 //        Enter alphabetical values in phone number
         var user = RegisterDataFactory.alphabeticalValuesInPhoneNumber();
         registerPageObj.fillRegisterForm(user);
+
+//        Verify error message displayed
+        Assert.assertTrue(registerPageObj.isTelephoneErrorMsgDisplayed(), "Telephone error message not displayed");
 
         String telephoneErrorMsg = registerPageObj.getTelephoneErrorText();
         Assert.assertEquals(telephoneErrorMsg, "Telephone does not appear to be valid!", "Telephone error message not displayed or mismatched");
