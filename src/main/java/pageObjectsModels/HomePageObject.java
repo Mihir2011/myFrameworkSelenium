@@ -1,5 +1,6 @@
 package pageObjectsModels;
 
+import dataObjects.HomePageDataObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,45 +37,46 @@ public class HomePageObject extends BasePageObject {
     }
 
     //    Actions
-    public void clickOnCurrency() {
-        wait.waitUntilElementToBeClickable(currency).click();
+    private void clickOnCurrency() {
+        seleniumHelper.clickOnElement(currency);
     }
 
     public void selectCurrency(String currency) {
         clickOnCurrency();
-        wait.waitUntilElementToBeClickable(currencyDropDown(currency)).click();
+        seleniumHelper.clickOnElement(currencyDropDown(currency));
     }
 
     public void clickOnMyAccount() {
-        wait.waitUntilElementToBeClickable(myAccount).click();
+        seleniumHelper.clickOnElement(myAccount);
     }
 
     public void clickOnRegister() {
         clickOnMyAccount();
-        wait.waitUntilElementToBeClickable(register).click();
+        seleniumHelper.clickOnElement(register);
     }
 
     public void clickOnLogin() {
         clickOnMyAccount();
-        wait.waitUntilElementToBeClickable(login).click();
+        seleniumHelper.clickOnElement(login);
     }
 
     public void searchTheProduct(String productName) {
-        wait.waitUntilElementToBeVisible(searchBox).sendKeys(productName);
-        wait.waitUntilElementToBeClickable(searchBtn).click();
+        seleniumHelper.enterText(searchBox, productName);
+        seleniumHelper.clickOnElement(searchBtn);
     }
 
-    public void addToCartProduct(String... itemName) {
-        var itemWantToAdd = new ArrayList<>(Arrays.asList(itemName));
-        itemWantToAdd.forEach(x -> wait.waitUntilElementToBeClickable(addToCartItemBtn(x)).click());
+    public void addToCartProduct(HomePageDataObject itemName) {
+//        var HomePageDataObj = new HomePageDataObject();
+        var itemWantToAdd = new ArrayList<>(Arrays.asList(itemName.getProductsWantsToAdd()));
+        itemWantToAdd.forEach(x -> seleniumHelper.clickOnElement(addToCartItemBtn(x)));
     }
 
     public void clickOnShoppingCart() {
-        wait.waitUntilElementToBeClickable(shoppingCartBtn).click();
+        seleniumHelper.clickOnElement(shoppingCartBtn);
     }
 
     public void clickOnBlackCartBtn() {
-        wait.waitUntilElementToBeClickable(blackCartBtn).click();
+        seleniumHelper.clickOnElement(blackCartBtn);
     }
 
     public void successAddToCartMessage() {
@@ -82,9 +84,9 @@ public class HomePageObject extends BasePageObject {
     }
 
     public List<String> getListOfCartItems() {
-        successAddToCartMessage();
-        clickOnBlackCartBtn();
+        successAddToCartMessage(); // wait until success message visible
+        clickOnBlackCartBtn(); // click on black cart button
 
-        return wait.waitUntilElementsToBeVisible(listOfCartItems).stream().map(WebElement::getText).toList();
+        return seleniumHelper.getTextFormList(listOfCartItems);
     }
 }

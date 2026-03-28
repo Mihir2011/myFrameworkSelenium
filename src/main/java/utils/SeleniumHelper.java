@@ -5,6 +5,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class SeleniumHelper {
     protected WebDriver driver;
     protected WaitUtils wait;
@@ -48,6 +50,10 @@ public class SeleniumHelper {
         var element = wait.waitUntilElementToBeVisible(by);
         js.scrollToElementIfNotVisible(element);
         return element.getText();
+    }
+
+    public List<String> getTextFormList(By by){
+        return wait.waitUntilElementsToBeVisible(by).stream().map(WebElement::getText).toList();
     }
 
     public String getPageTitle() throws InterruptedException {

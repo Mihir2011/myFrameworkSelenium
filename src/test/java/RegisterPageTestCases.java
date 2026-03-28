@@ -125,4 +125,22 @@ public class RegisterPageTestCases extends Base {
         String telephoneErrorMsg = registerPageObj.getTelephoneErrorText();
         Assert.assertEquals(telephoneErrorMsg, "Telephone does not appear to be valid!", "Telephone error message not displayed or mismatched");
     }
+
+    public void fillRegisterFormWithValidData() {
+//        page objects
+        HomePageObject homePageObj = new HomePageObject(driver);
+        RegisterPageObject registerPageObj = new RegisterPageObject(driver);
+
+//        click on register
+        homePageObj.clickOnRegister();
+
+//        Verify Register account title
+        String actualText = registerPageObj.getRegisterAccountTitle();
+        Assert.assertEquals(actualText, "Register Account", "User not redirected to Register Page");
+
+//        Fill register form with valid data
+        var registerData = RegisterDataFactory.validData();
+        registerPageObj.agreePrivacyPolicy();
+        registerPageObj.fillRegisterForm(registerData);
+    }
 }
